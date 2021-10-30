@@ -6,7 +6,7 @@ pipeline {
             }
     stages {
         stage('Get git') {
-          agent { label 'dockerhost'}
+          agent { label 'dockernode'}
           steps {
                git url: 'https://github.com/ArtsiomFortunatov/PD_Project.git'
               
@@ -14,7 +14,7 @@ pipeline {
             
         }
         stage('Connect to aws') {
-          agent { label 'dockerhost'}
+          agent { label 'dockernode'}
           steps {
                wrap([$class: "MaskPasswordsBuildWrapper",
                varPasswordPairs: [[password: ACCESSKEY], [password: SECRETKEY]]]) {
@@ -30,7 +30,7 @@ pipeline {
         }
         
         stage('Terraform init') {
-            agent { label 'dockerhost'}
+            agent { label 'dockernode'}
             steps {
                
                 sh '''
@@ -41,7 +41,7 @@ pipeline {
             }
         }
            stage('Terraform apply') {
-            agent { label 'dockerhost'}
+            agent { label 'dockernode'}
             steps {
                
                 sh '''
