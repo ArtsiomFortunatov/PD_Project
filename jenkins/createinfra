@@ -8,7 +8,7 @@ pipeline {
         stage('Get git') {
           agent { label 'dockerhost'}
           steps {
-               git url: https://github.com/ArtsiomFortunatov/PD_Project.git
+               git url: 'https://github.com/ArtsiomFortunatov/PD_Project.git'
               
           }
             
@@ -50,5 +50,4 @@ pipeline {
                 '''  
             }
         }
-        
-        
+    }    
